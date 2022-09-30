@@ -5,14 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1df6b02-6be4-46da-94d5-5933ae81c755" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/example/assertion/tf.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/example/fm/tf.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/example/test/tf.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/example/truth/tf.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/data/ArgResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/data/ArgResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/data/ParseResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/data/ParseResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/data/assertType/Equal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/data/assertType/Equal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/data/assertType/TF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/data/assertType/TF.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/NullParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/NullParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/TFParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/TFParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/example/test/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/example/test/1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,9 +49,17 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "F:/ideaProjects/filter_refactor/src/main/resources/example/truth"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\ideaProjects\filter_refactor\src\main\resources\example\truth" />
+      <recent name="F:\ideaProjects\filter_refactor\src\main\resources\example\assertion" />
+      <recent name="F:\ideaProjects\filter_refactor\src\main\resources\example\fm" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.FileVisitor">
     <configuration name="FileVisitor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.controller.FileVisitor" />
@@ -101,9 +114,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/parser/impl/TFParser.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

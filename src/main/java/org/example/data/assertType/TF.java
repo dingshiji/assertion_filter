@@ -16,10 +16,10 @@ public class TF extends ParseResult {
         arg = args[0];
     }
 
-
-    @Override
-    public String result2json() {
-        return null;
+    public ArgResult getArg() {
+        return arg;
     }
+
+
 
 }

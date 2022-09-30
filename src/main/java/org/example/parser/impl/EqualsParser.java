@@ -6,6 +6,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.stmt.ReturnStmt;
+import com.github.javaparser.printer.DefaultPrettyPrinter;
 import org.example.data.ArgResult;
 import org.example.data.ParseResult;
 import org.example.data.assertType.Equal;
@@ -15,6 +16,8 @@ import org.example.util.readFile2str;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class EqualsParser extends AssertionParser {
 
@@ -35,28 +38,28 @@ public class EqualsParser extends AssertionParser {
     @Override
     protected void findArgs() throws FileNotFoundException {
         CompilationUnit cu = StaticJavaParser.parse(test);
-        cu.findAll(MethodCallExpr.class).forEach(mce->{
-            if(mce.getName().toString().equals("assertEquals")){
-                 if(mce.getArguments().size()!=2){
-                     equalResult.setStopMsg("arg num != 2");
-                     return;
-                 }
+        cu.findAll(MethodCallExpr.class).forEach(mce -> {
+            if (mce.getName().toString().equals("assertEquals")) {
+                if (mce.getArguments().size() != 2) {
+                    equalResult.setStopMsg("arg num != 2");
+                    return;
+                }
 
-                 ArgResult argResult1 = new ArgResult(mce.getArgument(0).toString());
-                 argResult1.setMethodCall(mce.getArgument(0).isMethodCallExpr());
-                 if(argResult1.isMethodCall()){
-                     argResult1.setArgName(mce.getArgument(0).asMethodCallExpr().getName().toString());
-                 }
+                ArgResult argResult1 = new ArgResult(mce.getArgument(0).toString());
+                argResult1.setMethodCall(mce.getArgument(0).isMethodCallExpr());
+                if (argResult1.isMethodCall()) {
+                    argResult1.setArgName(mce.getArgument(0).asMethodCallExpr().getName().toString());
+                }
 
 
-                 ArgResult argResult2 = new ArgResult(mce.getArgument(1).toString());
-                 argResult2.setMethodCall(mce.getArgument(1).isMethodCallExpr());
-                 if(argResult2.isMethodCall()){
-                     argResult2.setArgName(mce.getArgument(1).asMethodCallExpr().getName().toString());
-                 }
+                ArgResult argResult2 = new ArgResult(mce.getArgument(1).toString());
+                argResult2.setMethodCall(mce.getArgument(1).isMethodCallExpr());
+                if (argResult2.isMethodCall()) {
+                    argResult2.setArgName(mce.getArgument(1).asMethodCallExpr().getName().toString());
+                }
 
-                 ArgResult[] argResults = {argResult1, argResult2};
-                 equalResult.setArg(argResults);
+                ArgResult[] argResults = {argResult1, argResult2};
+                equalResult.setArg(argResults);
             }
         });
 
@@ -65,18 +68,19 @@ public class EqualsParser extends AssertionParser {
 
     @Override
     protected void trivialCheck() {
-        if(equalResult.getArg1().getArgName().equals(equalResult.getArg2().getArgName())){
+        if (equalResult.getArg1().getArgName().equals(equalResult.getArg2().getArgName())) {
             equalResult.setStopMsg("arg1 == arg2");
         }
         equalResult.setMsg("trivial_check", "finished");
     }
+
     @Override
     protected void getTypeFromFM() throws FileNotFoundException {
         ArgResult arg1 = equalResult.getArg1();
         ArgResult arg2 = equalResult.getArg2();
 
-        if(!arg1.isMethodCall() && !arg2.isMethodCall()){
-            equalResult.setMsg("parse focal method","false");
+        if (!arg1.isMethodCall() && !arg2.isMethodCall()) {
+            equalResult.setMsg("parse focal method", "false");
             return;
         }
 
@@ -90,7 +94,7 @@ public class EqualsParser extends AssertionParser {
 //        System.out.println(arg1.getType());
 //        System.out.println(arg2.getType());
 
-        equalResult.setMsg("parse_fm", "finished");
+//        equalResult.setMsg("parse_fm", "finished");
     }
 
     @Override
@@ -106,6 +110,34 @@ public class EqualsParser extends AssertionParser {
         equalResult.setMsg("parse_context", "finished");
     }
 
+    @Override
+    protected boolean compareWithTruth() throws IOException {
+        String code1 = readFile2str.read(truth);
+        String code2 = readFile2str.read(assertion);
+
+        MethodCallExpr exp1 = StaticJavaParser.parseExpression(code1).asMethodCallExpr();
+        MethodCallExpr exp2 = StaticJavaParser.parseExpression(code2).asMethodCallExpr();
+
+        DefaultPrettyPrinter defaultPrettyPrinter = new DefaultPrettyPrinter();
+
+        Set<String> st1 = new HashSet<>(), st2 = new HashSet<>();
+        st1.add(defaultPrettyPrinter.print(exp1.getArgument(0)));
+        st1.add(defaultPrettyPrinter.print(exp1.getArgument(1)));
+        st2.add(defaultPrettyPrinter.print(exp2.getArgument(0)));
+        st2.add(defaultPrettyPrinter.print(exp2.getArgument(1)));
+
+        // compare two sets
+        boolean result = st1.equals(st2);
+
+        // check if code1 and code2 have the same meaning
+
+        if (result) {
+            equalResult.setMsg("correct answer", "true");
+        } else {
+            equalResult.setMsg("correct answer", "false");
+        }
+        return result;
+    }
 
     protected ParseResult getParseResult() {
 
@@ -114,19 +146,18 @@ public class EqualsParser extends AssertionParser {
 
         String result = "";
 
-        if(arg1.getType().equals(arg2.getType()) && arg1.isSolved() && arg2.isSolved()){
+        if (arg1.getType().equals(arg2.getType()) && arg1.isSolved() && arg2.isSolved()) {
             result = goodAssertion;
-        }else if(!arg1.getType().equals(arg2.getType()) && arg1.isSolved() && arg2.isSolved()){
+        } else if (!arg1.getType().equals(arg2.getType()) && arg1.isSolved() && arg2.isSolved()) {
             result = incompatible;
-        }else if(arg1.isMethodCall()|| arg2.isMethodCall()){
+        } else if (arg1.isMethodCall() || arg2.isMethodCall()) {
             result = isMethodCall;
-        }else if(!arg1.isSolved() && !arg2.isSolved()) {
+        } else if (!arg1.isSolved() && !arg2.isSolved()) {
             result = cantSolveType;
         }
 
 
-
-        equalResult.setMsg("result",result);
+        equalResult.setMsg("result", result);
 
 
         return (ParseResult) equalResult;

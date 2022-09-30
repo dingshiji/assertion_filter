@@ -1,6 +1,7 @@
 package org.example.data;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -50,5 +51,8 @@ public abstract class ParseResult {
         this.stop = true;
         this.msg.put("stop parsing",errorMessage);
     }
-    public abstract String result2json();
+    public  String result2json(){ 
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(msg);
+    };
 }

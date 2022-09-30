@@ -12,10 +12,10 @@ import java.io.*;
 
 public class FileVisitor {
 
-    File assertion,test,fm,truth;
+    File assertion, test, fm, truth;
 
     public FileVisitor(String assertion, String test, String fm, String truth) {
-        this.assertion = new File (assertion);
+        this.assertion = new File(assertion);
         this.test = new File(test);
         this.fm = new File(fm);
         this.truth = new File(truth);
@@ -26,12 +26,12 @@ public class FileVisitor {
 
         AssertionParser assertionParser = null;
         if (assertType.equals("assertEquals")) {
-            assertionParser = new EqualsParser(assertion,test,fm,truth);
+            assertionParser = new EqualsParser(assertion, test, fm, truth);
         } else if (assertType.equals("assertTrue") || assertType.equals("assertFalse")) {
-            assertionParser = new TFParser(assertion,test,fm,truth);
+            assertionParser = new TFParser(assertion, test, fm, truth);
         } else if (assertType.equals("assertNull") || assertType.equals("assertNotNull")) {
-            assertionParser = new NullParser(assertion,test,fm,truth);
-        }else{
+            assertionParser = new NullParser(assertion, test, fm, truth);
+        } else {
             throw new RuntimeException("Unknown assertion type");
         }
         ParseResult parseResult = assertionParser.parse();
@@ -44,10 +44,13 @@ public class FileVisitor {
 
     public static void main(String[] args) throws IOException {
 
-        FileVisitor fileVisitor = new FileVisitor("src/main/resources/example/assertion/1.txt",
-                "src/main/resources/example/test/1.txt",
-                "src/main/resources/example/fm/1.txt",
-                "src/main/resources/example/truth/1.txt");
+        String filename = "1.txt";
+
+        FileVisitor fileVisitor = new FileVisitor("src/main/resources/example/assertion/"+filename,
+                "src/main/resources/example/test/"+filename,
+                "src/main/resources/example/fm/"+filename,
+                "src/main/resources/example/truth/"+filename);
+
 
         fileVisitor.visit();
 

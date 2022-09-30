@@ -29,12 +29,7 @@ public class Equal extends ParseResult {
 
 
 
-    @Override
-    public String result2json() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        return gson.toJson(msg);
-    }
 
 
 }

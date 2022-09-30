@@ -1,1 +1,1 @@
-assertEquals(a, b);
+assertEquals(a, b.  a())
