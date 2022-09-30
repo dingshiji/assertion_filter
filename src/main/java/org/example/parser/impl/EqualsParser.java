@@ -144,6 +144,14 @@ public class EqualsParser extends AssertionParser {
         ArgResult arg1 = equalResult.getArg1();
         ArgResult arg2 = equalResult.getArg2();
 
+        if(checkEmptyArg(arg1)){
+            return (ParseResult) equalResult;
+        }
+
+        if(checkEmptyArg(arg2)){
+            return (ParseResult) equalResult;
+        }
+
         String result = "";
 
         if (arg1.getType().equals(arg2.getType()) && arg1.isSolved() && arg2.isSolved()) {

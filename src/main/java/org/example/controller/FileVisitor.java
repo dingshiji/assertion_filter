@@ -44,15 +44,26 @@ public class FileVisitor {
 
     public static void main(String[] args) throws IOException {
 
-        String filename = "1.txt";
+//        String filename = "1.txt";
 
-        FileVisitor fileVisitor = new FileVisitor("src/main/resources/example/assertion/"+filename,
-                "src/main/resources/example/test/"+filename,
-                "src/main/resources/example/fm/"+filename,
-                "src/main/resources/example/truth/"+filename);
+        String folder = args[0];
 
+        // walk through all files in the folder
+        File folderFile = new File("src/main/resources/"+folder + "assertion");
+        String[] files = folderFile.list();
+//        System.out.println(files);
 
-        fileVisitor.visit();
+        PrintStream out = System.out;
+        System.setOut(new PrintStream("out_first_100.txt"));
+
+        for(String filename : files){
+            FileVisitor fileVisitor = new FileVisitor("src/main/resources/" + folder +"assertion/"+filename,
+                    "src/main/resources/" + folder +"test/"+filename,
+                    "src/main/resources/" + folder +"fm/"+filename,
+                    "src/main/resources/" + folder +"truth/"+filename);
+            fileVisitor.visit();
+            System.out.println(",");
+        }
 
     }
 

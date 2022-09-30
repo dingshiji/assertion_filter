@@ -1,5 +1,6 @@
 package org.example.parser;
 
+import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
@@ -79,7 +80,7 @@ public abstract class AssertionParser {
 
     protected void findTypeInSolvedMethod(ArgResult arg) {
         if (arg.isMethodCall()) {
-            System.out.println(arg.getArgName());
+//            System.out.println(arg.getArgName());
             for (String key : solvedMethod.keySet()) {
                 if (key.equals(arg.getArgName())) {
                     arg.setType(solvedMethod.get(key));
@@ -91,7 +92,7 @@ public abstract class AssertionParser {
 
     protected void findTypeInSolvedToken(ArgResult arg) {
         if (!arg.isMethodCall()) {
-            System.out.println(arg.getArgName());
+//            System.out.println(arg.getArgName());
             for (String key : solvedToken.keySet()) {
                 if (key.equals(arg.getArgName())) {
                     arg.setType(solvedToken.get(key));
@@ -172,11 +173,29 @@ public abstract class AssertionParser {
         return result;
     }
 
+    private void checkAssertion() throws IOException {
+        Expression exp = StaticJavaParser.parseExpression(readFile2str.read(assertion));
+    }
+
+    protected boolean checkEmptyArg(ArgResult arg){
+        if (arg == null) {
+            parseResult.setStopMsg("arg is null. It might be caused by assertion parse error.");
+            return true;
+        }
+        return false;
+    }
+
     // template method here
     public ParseResult parse() throws IOException {
         init();
 
         add_test_info();
+
+        try {
+            checkAssertion();
+        } catch (Exception e) {
+            parseResult.setStopMsg("assertion parse error");
+        }
 
         try {
             findArgs();
@@ -210,9 +229,9 @@ public abstract class AssertionParser {
             parseResult.setStopMsg("error in getTypeFromContext()");
         }
 
-        try{
+        try {
             compareWithTruth();
-        }catch (Exception e){
+        } catch (Exception e) {
             parseResult.setStopMsg("error in compareWithTruth()");
         }
 

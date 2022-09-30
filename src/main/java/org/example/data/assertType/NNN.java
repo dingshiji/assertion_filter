@@ -18,10 +18,9 @@ public class NNN extends ParseResult {
         this.arg = args[0];
     }
 
-
-
-    @Override
-    public String result2json() {
-        return null;
+    public ArgResult getArg() {
+        return arg;
     }
+
+
 }

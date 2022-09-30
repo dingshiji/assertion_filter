@@ -1,5 +1,0 @@
-class Y{
-    public void bar(){
-        return 1;
-    }
-}

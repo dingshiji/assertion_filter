@@ -1,7 +1,0 @@
-class X{
-    public void foo(){
-        int a = 1;
-        String b = "hello";
-        assertEquals(bar(), c);
-    }
-}

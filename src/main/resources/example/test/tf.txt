@@ -1,8 +1,0 @@
-class X{
-    public void foo(){
-        int a = 1;
-        String b = "hello";
-        boolean c = a && b;
-        assertTrue(c);
-    }
-}

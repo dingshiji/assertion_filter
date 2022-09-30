@@ -92,6 +92,10 @@ public class TFParser extends AssertionParser {
 
         ArgResult arg = tfResult.getArg();
 
+        if(checkEmptyArg(arg)){
+            return (ParseResult) tfResult;
+        }
+
         String result = "";
 
         if (arg.getType().equals("boolean")) {
