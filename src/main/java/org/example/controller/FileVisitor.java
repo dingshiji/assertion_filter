@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.example.data.ParseResult;
 import org.example.parser.AssertionParser;
 import org.example.parser.impl.EqualsParser;
@@ -33,7 +35,10 @@ public class FileVisitor {
             throw new RuntimeException("Unknown assertion type");
         }
         ParseResult parseResult = assertionParser.parse();
+
+
         System.out.println(parseResult.result2json());
+
         // todo: transform parseResult into json, then write to file.
     }
 

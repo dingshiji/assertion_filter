@@ -7,6 +7,7 @@ public class ArgResult {
 
     public ArgResult(String argName) {
         this.argName = argName;
+        this.type = "";
     }
 
     public String getArgName() {
@@ -27,6 +28,10 @@ public class ArgResult {
 
     public String getType() {
         return type;
+    }
+
+    public boolean isSolved(){
+        return !type.equals("");
     }
 
     public void setType(String type) {

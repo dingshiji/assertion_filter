@@ -1,6 +1,7 @@
 package org.example.data.assertType;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.example.data.ArgResult;
 import org.example.data.ParseResult;
 
@@ -30,7 +31,8 @@ public class Equal extends ParseResult {
 
     @Override
     public String result2json() {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
         return gson.toJson(msg);
     }
 

@@ -27,7 +27,7 @@ public class TFParser extends AssertionParser {
     }
 
     @Override
-    protected void parseContext() {
+    protected void getTypeFromContext() {
 
     }
 

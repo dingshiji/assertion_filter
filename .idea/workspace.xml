@@ -5,26 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1df6b02-6be4-46da-94d5-5933ae81c755" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/data/ArgResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/data/ParseResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/data/assertType/Equal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/data/assertType/NNN.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/data/assertType/TF.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/NullParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/TFParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/util/readFile2str.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/example/assertion/1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/util/testReadFile2str.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/data/ArgResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/data/ArgResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/NullParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/NullParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/TFParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/TFParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/example/test/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/example/test/1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +102,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java</url>
-          <line>25</line>
+          <line>27</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

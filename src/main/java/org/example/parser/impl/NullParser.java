@@ -27,7 +27,7 @@ public class NullParser extends AssertionParser {
     }
 
     @Override
-    protected void parseContext() {
+    protected void getTypeFromContext() {
 
     }
 
