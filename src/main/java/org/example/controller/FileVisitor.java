@@ -9,6 +9,8 @@ import org.example.parser.impl.NullParser;
 import org.example.parser.impl.TFParser;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class FileVisitor {
 
@@ -21,7 +23,7 @@ public class FileVisitor {
         this.truth = new File(truth);
     }
 
-    public void visit() throws IOException {
+    public String visit() throws IOException {
         String assertType = readAssertTypeFromFirstLine(assertion);
 
         AssertionParser assertionParser = null;
@@ -32,13 +34,13 @@ public class FileVisitor {
         } else if (assertType.equals("assertNull") || assertType.equals("assertNotNull")) {
             assertionParser = new NullParser(assertion, test, fm, truth);
         } else {
-            return;
+            return "Unknown assertion type";
 //            throw new RuntimeException("Unknown assertion type");
         }
         ParseResult parseResult = assertionParser.parse();
 
-
-        System.out.println(parseResult.result2json());
+        return parseResult.result2json();
+//        System.out.println(parseResult.result2json());
 
         // todo: transform parseResult into json, then write to file.
     }
@@ -57,14 +59,24 @@ public class FileVisitor {
         PrintStream out = System.out;
         System.setOut(new PrintStream(args[1]));
 
+
+
+        HashMap results = new LinkedHashMap();
+//        int cnt = 0;
+
         for(String filename : files){
             FileVisitor fileVisitor = new FileVisitor("src/main/resources/" + folder +"assertion/"+filename,
                     "src/main/resources/" + folder +"test/"+filename,
                     "src/main/resources/" + folder +"fm/"+filename,
                     "src/main/resources/" + folder +"truth/"+filename);
-            fileVisitor.visit();
-            System.out.println("=============================="); // =*30
+            String result = fileVisitor.visit();
+            results.put(filename, result);
+//            System.out.println("=============================="); // =*30
         }
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String output = gson.toJson(results);
+        System.out.println(output);
 
     }
 

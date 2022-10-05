@@ -175,8 +175,8 @@ public class EqualsParser extends AssertionParser {
         }
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        equalResult.setMsg("arg", gson.toJson(arg1.getDictResult()));
-        equalResult.setMsg("arg", gson.toJson(arg2.getDictResult()));
+        equalResult.setMsg("arg1", gson.toJson(arg1.getDictResult()));
+        equalResult.setMsg("arg2", gson.toJson(arg2.getDictResult()));
 
         equalResult.setMsg("result", result);
 
