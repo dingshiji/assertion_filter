@@ -5,6 +5,8 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.printer.DefaultPrettyPrinter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javassist.expr.MethodCall;
 import org.example.data.ArgResult;
 import org.example.data.ParseResult;
@@ -115,7 +117,8 @@ public class TFParser extends AssertionParser {
             result = cantSolveType;
         }
 
-        tfResult.setMsg("arg", arg.toString());
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        tfResult.setMsg("arg", gson.toJson(arg.getDictResult()));
 
 
         tfResult.setMsg("result", result);

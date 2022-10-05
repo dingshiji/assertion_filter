@@ -7,6 +7,8 @@ import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.stmt.ReturnStmt;
 import com.github.javaparser.printer.DefaultPrettyPrinter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.example.data.ArgResult;
 import org.example.data.ParseResult;
 import org.example.data.assertType.Equal;
@@ -172,13 +174,11 @@ public class EqualsParser extends AssertionParser {
             result = cantSolveType;
         }
 
-
-        equalResult.setMsg("arg1", arg1.toString());
-        equalResult.setMsg("arg2", arg2.toString());
-
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        equalResult.setMsg("arg", gson.toJson(arg1.getDictResult()));
+        equalResult.setMsg("arg", gson.toJson(arg2.getDictResult()));
 
         equalResult.setMsg("result", result);
-
 
         return (ParseResult) equalResult;
     }

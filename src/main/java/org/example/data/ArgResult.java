@@ -1,10 +1,14 @@
 package org.example.data;
 
+import java.util.HashMap;
+
 public class ArgResult {
     String argName;
     boolean methodCall;
     boolean fm;
     String type;
+
+    HashMap result;
 
     public boolean isFm() {
         return fm;
@@ -34,6 +38,16 @@ public class ArgResult {
                 ", type='" + type + '\'' +
                 ", fieldAccess=" + fieldAccess +
                 '}';
+    }
+
+    public HashMap getDictResult() {
+        result = new HashMap();
+        result.put("argName",argName);
+        result.put("methodCall",methodCall);
+        result.put("fm",fm);
+        result.put("type",type);
+        result.put("fieldAccess",fieldAccess);
+        return result;
     }
 
     public ArgResult(String argName) {

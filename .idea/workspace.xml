@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1df6b02-6be4-46da-94d5-5933ae81c755" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tmpp.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/data/ArgResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/data/ArgResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/NullParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/NullParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/TFParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/TFParser.java" afterDir="false" />

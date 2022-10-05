@@ -9,7 +9,7 @@
   "find type in test": "a",
   "parse context": "finished",
   "correct answer": "false",
-  "arg": "ArgResult{argName\u003d\u0027a\u0027, methodCall\u003dfalse, fm\u003dfalse, type\u003d\u0027int\u0027, fieldAccess\u003dfalse}",
+  "arg": "{\n  \"argName\": \"a\",\n  \"fm\": false,\n  \"fieldAccess\": false,\n  \"type\": \"int\",\n  \"methodCall\": false\n}",
   "result": "incompatible type"
 }
 ,

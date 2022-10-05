@@ -4,6 +4,8 @@ import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.printer.DefaultPrettyPrinter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.example.data.ArgResult;
 import org.example.data.ParseResult;
 import org.example.data.assertType.NNN;
@@ -110,7 +112,8 @@ public class NullParser extends AssertionParser {
             result = cantSolveType;
         }
 
-        nnnResult.setMsg("arg", arg.toString());
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        nnnResult.setMsg("arg", gson.toJson(arg.getDictResult()));
 
         nnnResult.setMsg("result", result);
 
