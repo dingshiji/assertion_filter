@@ -4,6 +4,8 @@ import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.printer.DefaultPrettyPrinter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.example.data.ArgResult;
 import org.example.data.ParseResult;
 import org.example.data.assertType.NNN;
@@ -52,6 +54,8 @@ public class NullParser extends AssertionParser {
                     argResult.setArgName(mce.getArgument(0).asMethodCallExpr().getName().toString());
                 }
 
+                argResult.setFieldAccess(mce.getArgument(0).isFieldAccessExpr());
+
                 ArgResult[] argResults = {argResult};
                 nnnResult.setArg(argResults);
             }
@@ -99,10 +103,17 @@ public class NullParser extends AssertionParser {
         if (arg.isSolved()) {
             result = goodAssertion;
         } else if (arg.isMethodCall()) {
-            result = isMethodCall;
+            if (arg.getArgName().equals(fmName)) {
+                result = isMethodCallFM;
+            }else{
+                result = isMethodCall;
+            }
         } else {
             result = cantSolveType;
         }
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        nnnResult.setMsg("arg", gson.toJson(arg.getDictResult()));
 
         nnnResult.setMsg("result", result);
 

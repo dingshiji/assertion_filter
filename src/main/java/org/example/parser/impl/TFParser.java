@@ -5,6 +5,8 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.printer.DefaultPrettyPrinter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javassist.expr.MethodCall;
 import org.example.data.ArgResult;
 import org.example.data.ParseResult;
@@ -47,6 +49,9 @@ public class TFParser extends AssertionParser {
                 if (argResult.isMethodCall()) {
                     argResult.setArgName(mce.getArgument(0).asMethodCallExpr().getName().toString());
                 }
+
+                argResult.setFieldAccess(mce.getArgument(0).isFieldAccessExpr());
+
 
                 ArgResult[] argResults = {argResult};
                 tfResult.setArg(argResults);
@@ -92,7 +97,7 @@ public class TFParser extends AssertionParser {
 
         ArgResult arg = tfResult.getArg();
 
-        if(checkEmptyArg(arg)){
+        if (checkEmptyArg(arg)) {
             return (ParseResult) tfResult;
         }
 
@@ -103,10 +108,18 @@ public class TFParser extends AssertionParser {
         } else if (arg.isSolved()) {
             result = incompatible;
         } else if (arg.isMethodCall()) {
-            result = isMethodCall;
+            if (arg.getArgName().equals(fmName)) {
+                result = isMethodCallFM;
+            }else{
+                result = isMethodCall;
+            }
         } else {
             result = cantSolveType;
         }
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        tfResult.setMsg("arg", gson.toJson(arg.getDictResult()));
+
 
         tfResult.setMsg("result", result);
 

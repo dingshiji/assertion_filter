@@ -1,0 +1,15 @@
+{
+  "file": "tf.txt",
+  "assertion": "assertTrue(   a.b)\r\n",
+  "test": "class X{\r\n    public void foo(){\r\n        int a \u003d 1;\r\n        String b \u003d \"hello\";\r\n        boolean c \u003d a \u0026\u0026 b;\r\n        assertTrue( a);\r\n    }\r\n}\r\n",
+  "focal method": "class Y{\r\n    public void bar(){\r\n        int a \u003d 1;\r\n    }\r\n}\r\n",
+  "truth": "assertTrue(c.d)\r\n",
+  "trivial_check": "finished",
+  "parse focal method": "false",
+  "find type in test": "a",
+  "parse context": "finished",
+  "correct answer": "false",
+  "arg": "{\n  \"argName\": \"a\",\n  \"fm\": false,\n  \"fieldAccess\": false,\n  \"type\": \"int\",\n  \"methodCall\": false\n}",
+  "result": "incompatible type"
+}
+,
