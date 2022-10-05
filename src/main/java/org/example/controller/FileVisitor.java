@@ -63,7 +63,7 @@ public class FileVisitor {
                     "src/main/resources/" + folder +"fm/"+filename,
                     "src/main/resources/" + folder +"truth/"+filename);
             fileVisitor.visit();
-            System.out.println(",");
+            System.out.println("=============================="); // =*30
         }
 
     }
