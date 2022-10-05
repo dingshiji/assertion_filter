@@ -52,6 +52,8 @@ public class NullParser extends AssertionParser {
                     argResult.setArgName(mce.getArgument(0).asMethodCallExpr().getName().toString());
                 }
 
+                argResult.setFieldAccess(mce.getArgument(0).isFieldAccessExpr());
+
                 ArgResult[] argResults = {argResult};
                 nnnResult.setArg(argResults);
             }
@@ -99,10 +101,16 @@ public class NullParser extends AssertionParser {
         if (arg.isSolved()) {
             result = goodAssertion;
         } else if (arg.isMethodCall()) {
-            result = isMethodCall;
+            if (arg.getArgName().equals(fmName)) {
+                result = isMethodCallFM;
+            }else{
+                result = isMethodCall;
+            }
         } else {
             result = cantSolveType;
         }
+
+        nnnResult.setMsg("arg", arg.toString());
 
         nnnResult.setMsg("result", result);
 

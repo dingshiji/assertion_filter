@@ -48,6 +48,9 @@ public class TFParser extends AssertionParser {
                     argResult.setArgName(mce.getArgument(0).asMethodCallExpr().getName().toString());
                 }
 
+                argResult.setFieldAccess(mce.getArgument(0).isFieldAccessExpr());
+
+
                 ArgResult[] argResults = {argResult};
                 tfResult.setArg(argResults);
             }
@@ -92,7 +95,7 @@ public class TFParser extends AssertionParser {
 
         ArgResult arg = tfResult.getArg();
 
-        if(checkEmptyArg(arg)){
+        if (checkEmptyArg(arg)) {
             return (ParseResult) tfResult;
         }
 
@@ -103,10 +106,17 @@ public class TFParser extends AssertionParser {
         } else if (arg.isSolved()) {
             result = incompatible;
         } else if (arg.isMethodCall()) {
-            result = isMethodCall;
+            if (arg.getArgName().equals(fmName)) {
+                result = isMethodCallFM;
+            }else{
+                result = isMethodCall;
+            }
         } else {
             result = cantSolveType;
         }
+
+        tfResult.setMsg("arg", arg.toString());
+
 
         tfResult.setMsg("result", result);
 

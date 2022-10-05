@@ -26,13 +26,18 @@ public abstract class AssertionParser {
 
     protected static final String cantSolveType = "cannot solve all the type info";
     protected static final String goodAssertion = "Good assertion";
-    protected static final String isMethodCall = "unsolved argument or method call exists";
+    protected static final String isMethodCall = "method call, not focal method";
+
+    protected static final String isMethodCallFM = "method call, focal method";
+
     protected static final String incompatible = "incompatible type";
 
     protected File assertion;
     protected File test;
     protected File fm;
     protected File truth;
+
+    protected String fmName;
 
     protected HashMap<String, String> solvedToken, solvedMethod;
 
@@ -84,6 +89,7 @@ public abstract class AssertionParser {
             for (String key : solvedMethod.keySet()) {
                 if (key.equals(arg.getArgName())) {
                     arg.setType(solvedMethod.get(key));
+                    arg.setFm(true);
                     parseResult.setMsg("find type in focal method", arg.getArgName());
                 }
             }
@@ -106,6 +112,7 @@ public abstract class AssertionParser {
         CompilationUnit cu = StaticJavaParser.parse(fm);
         String fmName = cu.findAll(MethodDeclaration.class).get(0).getName().toString();
 //        System.out.println(fmName);
+        this.fmName = fmName;
         cu.findAll(ReturnStmt.class).forEach(rs -> {
             String retType = "";
             Expression retVal = StaticJavaParser.parseExpression(rs.getChildNodes().get(0).toString());
@@ -188,7 +195,7 @@ public abstract class AssertionParser {
     // template method here
     public ParseResult parse() throws IOException {
         init();
-
+        parseResult.setMsg("file",assertion.getName());
         add_test_info();
 
         try {
@@ -234,6 +241,8 @@ public abstract class AssertionParser {
         } catch (Exception e) {
             parseResult.setStopMsg("error in compareWithTruth()");
         }
+
+
 
         return getParseResult();
     }

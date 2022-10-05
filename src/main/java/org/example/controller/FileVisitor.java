@@ -32,7 +32,8 @@ public class FileVisitor {
         } else if (assertType.equals("assertNull") || assertType.equals("assertNotNull")) {
             assertionParser = new NullParser(assertion, test, fm, truth);
         } else {
-            throw new RuntimeException("Unknown assertion type");
+            return;
+//            throw new RuntimeException("Unknown assertion type");
         }
         ParseResult parseResult = assertionParser.parse();
 
@@ -54,7 +55,7 @@ public class FileVisitor {
 //        System.out.println(files);
 
         PrintStream out = System.out;
-        System.setOut(new PrintStream("out_first_100.txt"));
+        System.setOut(new PrintStream(args[1]));
 
         for(String filename : files){
             FileVisitor fileVisitor = new FileVisitor("src/main/resources/" + folder +"assertion/"+filename,

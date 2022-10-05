@@ -50,6 +50,7 @@ public class EqualsParser extends AssertionParser {
                 if (argResult1.isMethodCall()) {
                     argResult1.setArgName(mce.getArgument(0).asMethodCallExpr().getName().toString());
                 }
+                argResult1.setFieldAccess(mce.getArgument(0).isFieldAccessExpr());
 
 
                 ArgResult argResult2 = new ArgResult(mce.getArgument(1).toString());
@@ -57,6 +58,7 @@ public class EqualsParser extends AssertionParser {
                 if (argResult2.isMethodCall()) {
                     argResult2.setArgName(mce.getArgument(1).asMethodCallExpr().getName().toString());
                 }
+                argResult2.setFieldAccess(mce.getArgument(1).isFieldAccessExpr());
 
                 ArgResult[] argResults = {argResult1, argResult2};
                 equalResult.setArg(argResults);
@@ -86,7 +88,7 @@ public class EqualsParser extends AssertionParser {
 
         parseFM();
         equalResult.setMsg("parse focal method", "true");
-        System.out.println("solved method in fm:" + solvedMethod);
+//        System.out.println("solved method in fm:" + solvedMethod);
 
         findTypeInSolvedMethod(arg1);
         findTypeInSolvedMethod(arg2);
@@ -144,11 +146,11 @@ public class EqualsParser extends AssertionParser {
         ArgResult arg1 = equalResult.getArg1();
         ArgResult arg2 = equalResult.getArg2();
 
-        if(checkEmptyArg(arg1)){
+        if (checkEmptyArg(arg1)) {
             return (ParseResult) equalResult;
         }
 
-        if(checkEmptyArg(arg2)){
+        if (checkEmptyArg(arg2)) {
             return (ParseResult) equalResult;
         }
 
@@ -159,10 +161,20 @@ public class EqualsParser extends AssertionParser {
         } else if (!arg1.getType().equals(arg2.getType()) && arg1.isSolved() && arg2.isSolved()) {
             result = incompatible;
         } else if (arg1.isMethodCall() || arg2.isMethodCall()) {
-            result = isMethodCall;
+            if (arg1.isMethodCall() && arg1.getArgName().equals(fmName)) {
+                result = isMethodCallFM;
+            } else if (arg2.isMethodCall() && arg2.getArgName().equals(fmName)) {
+                result = isMethodCallFM;
+            } else {
+                result = isMethodCall;
+            }
         } else if (!arg1.isSolved() && !arg2.isSolved()) {
             result = cantSolveType;
         }
+
+
+        equalResult.setMsg("arg1", arg1.toString());
+        equalResult.setMsg("arg2", arg2.toString());
 
 
         equalResult.setMsg("result", result);
