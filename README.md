@@ -1,9 +1,10 @@
 #### run assertion filter
 
 ```
-org.example.FileVisitor.main()
+org.example.FileVisitor
+main()
 
-args[0]: input_json
+args[0]: Top-30-lower.txt
 args[1]: output_json
 ```
 
