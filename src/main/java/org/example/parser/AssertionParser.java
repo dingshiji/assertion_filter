@@ -37,6 +37,12 @@ public abstract class AssertionParser {
     protected File fm;
     protected File truth;
 
+    protected String assertionStr;
+    protected String testStr;
+    protected String fmStr;
+    protected String truthStr;
+    protected String testName;
+
     protected String fmName;
 
     protected HashMap<String, String> solvedToken, solvedMethod;
@@ -52,6 +58,14 @@ public abstract class AssertionParser {
         this.test = test;
         this.fm = fm;
         this.truth = truth;
+    }
+
+    public AssertionParser(String assertionStr, String testStr, String fmStr, String truthStr, String testName) {
+        this.assertionStr = assertionStr.trim();
+        this.testStr = testStr.trim();
+        this.fmStr = fmStr.trim();
+        this.truthStr = truthStr.trim();
+        this.testName = testName.trim();
     }
 
     private void setSolver() {
@@ -109,7 +123,7 @@ public abstract class AssertionParser {
     }
 
     protected void parseFM() throws FileNotFoundException {
-        CompilationUnit cu = StaticJavaParser.parse(fm);
+        CompilationUnit cu = StaticJavaParser.parse(fmStr);
         String fmName = cu.findAll(MethodDeclaration.class).get(0).getName().toString();
 //        System.out.println(fmName);
         this.fmName = fmName;
@@ -136,7 +150,7 @@ public abstract class AssertionParser {
     ;
 
     protected void parseContext() throws FileNotFoundException {
-        CompilationUnit cu = StaticJavaParser.parse(test);
+        CompilationUnit cu = StaticJavaParser.parse(testStr);
         cu.findAll(VariableDeclarationExpr.class).forEach(vde -> {
             String varName = vde.getVariable(0).getName().toString();
             String varType = vde.getVariable(0).getType().toString();
@@ -150,10 +164,10 @@ public abstract class AssertionParser {
 
 
     private void add_test_info() throws IOException {
-        parseResult.setMsg("assertion", readFile2str.read(assertion));
-        parseResult.setMsg("test", readFile2str.read(test));
-        parseResult.setMsg("focal method", readFile2str.read(fm));
-        parseResult.setMsg("truth", readFile2str.read(truth));
+        parseResult.setMsg("assertion", assertionStr);
+        parseResult.setMsg("test", testStr);
+        parseResult.setMsg("focal method", fmStr);
+        parseResult.setMsg("truth", truthStr);
     }
 
     protected abstract boolean compareWithTruth() throws IOException;
@@ -181,7 +195,7 @@ public abstract class AssertionParser {
     }
 
     private void checkAssertion() throws IOException {
-        Expression exp = StaticJavaParser.parseExpression(readFile2str.read(assertion));
+        Expression exp = StaticJavaParser.parseExpression(assertionStr);
     }
 
     protected boolean checkEmptyArg(ArgResult arg){
@@ -195,7 +209,7 @@ public abstract class AssertionParser {
     // template method here
     public ParseResult parse() throws IOException {
         init();
-        parseResult.setMsg("file",assertion.getName());
+        parseResult.setMsg("file",testName);
         add_test_info();
 
         try {

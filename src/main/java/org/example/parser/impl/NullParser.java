@@ -24,10 +24,14 @@ public class NullParser extends AssertionParser {
         super(assertion, test, fm, truth);
     }
 
+    public NullParser(String assertionStr, String testStr, String fmStr, String truthStr, String testName) {
+        super(assertionStr, testStr, fmStr, truthStr, testName);
+    }
+
     @Override
     protected void init() throws IOException {
         super.init();
-        nnnResult = new NNN(assertion.getName(), readFile2str.read(assertion), readFile2str.read(test), readFile2str.read(fm), readFile2str.read(truth));
+        nnnResult = new NNN(testName, assertionStr, testStr, fmStr, truthStr);
         parseResult = nnnResult;
     }
 
@@ -41,7 +45,7 @@ public class NullParser extends AssertionParser {
 
     @Override
     protected void findArgs() throws FileNotFoundException {
-        CompilationUnit cu = StaticJavaParser.parse(test);
+        CompilationUnit cu = StaticJavaParser.parse(testStr);
         cu.findAll(MethodCallExpr.class).forEach(mce -> {
             if (mce.getName().toString().equals("assertNull") || mce.getName().toString().equals("assertNotNull")) {
                 if (mce.getArguments().size() != 1) {

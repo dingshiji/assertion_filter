@@ -26,10 +26,13 @@ public class TFParser extends AssertionParser {
         super(assertion, test, fm, truth);
     }
 
+    public TFParser(String assertionStr, String testStr, String fmStr, String truthStr, String testName) {
+        super(assertionStr, testStr, fmStr, truthStr, testName);
+    }
 
     protected void init() throws IOException {
         super.init();
-        tfResult = new TF(assertion.getName(), readFile2str.read(assertion), readFile2str.read(test), readFile2str.read(fm), readFile2str.read(truth));
+        tfResult = new TF(testName, assertionStr, testStr, fmStr, truthStr);
         parseResult = tfResult;
 
     }
@@ -37,7 +40,7 @@ public class TFParser extends AssertionParser {
 
     @Override
     protected void findArgs() throws FileNotFoundException {
-        CompilationUnit cu = StaticJavaParser.parse(test);
+        CompilationUnit cu = StaticJavaParser.parse(testStr);
         cu.findAll(MethodCallExpr.class).forEach(mce -> {
             if (mce.getName().toString().equals("assertTrue") || mce.getName().toString().equals("assertFalse")) {
                 if (mce.getArguments().size() != 1) {

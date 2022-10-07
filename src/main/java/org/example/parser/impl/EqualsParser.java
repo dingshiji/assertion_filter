@@ -29,17 +29,20 @@ public class EqualsParser extends AssertionParser {
         super(assertion, test, fm, truth);
     }
 
+    public EqualsParser(String assertionStr, String testStr, String fmStr, String truthStr, String testName) {
+        super(assertionStr, testStr, fmStr, truthStr, testName);
+    }
 
     @Override
     protected void init() throws IOException {
         super.init();
-        equalResult = new Equal(assertion.getName(), readFile2str.read(assertion), readFile2str.read(test), readFile2str.read(fm), readFile2str.read(truth));
+        equalResult = new Equal(testName, assertionStr, testStr, fmStr, truthStr);
         parseResult = equalResult;
     }
 
     @Override
     protected void findArgs() throws FileNotFoundException {
-        CompilationUnit cu = StaticJavaParser.parse(test);
+        CompilationUnit cu = StaticJavaParser.parse(testStr);
         cu.findAll(MethodCallExpr.class).forEach(mce -> {
             if (mce.getName().toString().equals("assertEquals")) {
                 if (mce.getArguments().size() != 2) {
@@ -116,8 +119,8 @@ public class EqualsParser extends AssertionParser {
 
     @Override
     protected boolean compareWithTruth() throws IOException {
-        String code1 = readFile2str.read(truth);
-        String code2 = readFile2str.read(assertion);
+        String code1 = truthStr;
+        String code2 = assertionStr;
 
         MethodCallExpr exp1 = StaticJavaParser.parseExpression(code1).asMethodCallExpr();
         MethodCallExpr exp2 = StaticJavaParser.parseExpression(code2).asMethodCallExpr();
