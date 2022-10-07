@@ -113,7 +113,11 @@ public class NullParser extends AssertionParser {
                 result = isMethodCall;
             }
         } else {
-            result = cantSolveType;
+            if(arg.isFieldAccess()) {
+                result = cantSolveType_field;
+            }else {
+                result = cantSolveType;
+            }
         }
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

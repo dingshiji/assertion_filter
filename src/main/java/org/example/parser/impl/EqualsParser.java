@@ -174,7 +174,11 @@ public class EqualsParser extends AssertionParser {
                 result = isMethodCall;
             }
         } else if (!arg1.isSolved() || !arg2.isSolved()) {
-            result = cantSolveType;
+            if (arg1.isFieldAccess() || arg2.isFieldAccess()) {
+                result = cantSolveType_field;
+            } else {
+                result = cantSolveType;
+            }
         }
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

@@ -25,6 +25,8 @@ import java.util.HashMap;
 public abstract class AssertionParser {
 
     protected static final String cantSolveType = "cannot solve all the type info";
+
+    protected static final String cantSolveType_field = "cannot solve all the type info, field access exists";
     protected static final String goodAssertion = "Good assertion";
     protected static final String isMethodCall = "method call, not focal method";
 

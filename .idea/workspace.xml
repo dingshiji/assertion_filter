@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c1df6b02-6be4-46da-94d5-5933ae81c755" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pythonScripts/107_check_full_test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pythonScripts/107_check_full_test.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pythonScripts/hello.py" beforeDir="false" afterPath="$PROJECT_DIR$/pythonScripts/hello.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/NullParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/NullParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/TFParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/TFParser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +55,7 @@
       <recent name="F:\ideaProjects\filter_refactor\src\main\resources\example\fm" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\ideaProjects\filter_refactor\input" />
       <recent name="F:\ideaProjects\filter_refactor\output" />
       <recent name="F:\ideaProjects\filter_refactor\outputs" />
     </key>
@@ -72,7 +78,7 @@
     <configuration name="fromJson" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.example.controller.FileVisitor" />
       <module name="filter_refactor" />
-      <option name="PROGRAM_PARAMETERS" value="src/main/resources/str/Top-30-lower.txt  output/top-30_all_with_idx.json" />
+      <option name="PROGRAM_PARAMETERS" value="src/main/resources/str/Top-30-lower.txt  output/top-30_all_with_idx_field_acc.json" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -152,7 +158,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java</url>
-          <line>229</line>
+          <line>231</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
