@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c1df6b02-6be4-46da-94d5-5933ae81c755" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example_output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/example_output.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pythonScripts/checkResult_106.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pythonScripts/checkResult_106.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,11 +53,11 @@
       <recent name="F:\ideaProjects\filter_refactor\outputs" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.testFile">
-    <configuration name="org.example.controller.FileVisitor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.FileVisitor">
+    <configuration name="FileVisitor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.controller.FileVisitor" />
       <module name="filter_refactor" />
-      <option name="PROGRAM_PARAMETERS" value="new/  new_first_100_acc_fm_json.json" />
+      <option name="PROGRAM_PARAMETERS" value="new/  new_first_100_acc_fm_json_2.json" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.controller.*" />
@@ -85,12 +85,12 @@
     </configuration>
     <list>
       <item itemvalue="Application.testFile" />
-      <item itemvalue="Application.org.example.controller.FileVisitor" />
+      <item itemvalue="Application.FileVisitor" />
       <item itemvalue="Application.util.testReadFile2str" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.org.example.controller.FileVisitor" />
+        <item itemvalue="Application.FileVisitor" />
         <item itemvalue="Application.util.testReadFile2str" />
       </list>
     </recent_temporary>
@@ -121,9 +121,10 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
+          <condition expression="assertion.getName().equals(&quot;16_3.txt&quot;)" language="JAVA" />
           <url>file://$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="1" />
+          <line>30</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

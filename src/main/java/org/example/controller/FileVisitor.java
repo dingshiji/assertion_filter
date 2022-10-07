@@ -26,6 +26,8 @@ public class FileVisitor {
     public String visit() throws IOException {
         String assertType = readAssertTypeFromFirstLine(assertion);
 
+
+
         AssertionParser assertionParser = null;
         if (assertType.equals("assertEquals")) {
             assertionParser = new EqualsParser(assertion, test, fm, truth);
@@ -52,7 +54,7 @@ public class FileVisitor {
         String folder = args[0];
 
         // walk through all files in the folder
-        File folderFile = new File("src/main/resources/"+folder + "assertion");
+        File folderFile = new File("src/main/resources/" + folder + "assertion");
         String[] files = folderFile.list();
 //        System.out.println(files);
 
@@ -60,15 +62,14 @@ public class FileVisitor {
         System.setOut(new PrintStream(args[1]));
 
 
-
         HashMap results = new LinkedHashMap();
 //        int cnt = 0;
 
-        for(String filename : files){
-            FileVisitor fileVisitor = new FileVisitor("src/main/resources/" + folder +"assertion/"+filename,
-                    "src/main/resources/" + folder +"test/"+filename,
-                    "src/main/resources/" + folder +"fm/"+filename,
-                    "src/main/resources/" + folder +"truth/"+filename);
+        for (String filename : files) {
+            FileVisitor fileVisitor = new FileVisitor("src/main/resources/" + folder + "assertion/" + filename,
+                    "src/main/resources/" + folder + "test/" + filename,
+                    "src/main/resources/" + folder + "fm/" + filename,
+                    "src/main/resources/" + folder + "truth/" + filename);
             String result = fileVisitor.visit();
             results.put(filename, result);
 //            System.out.println("=============================="); // =*30

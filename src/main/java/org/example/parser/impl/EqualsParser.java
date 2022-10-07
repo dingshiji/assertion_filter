@@ -170,7 +170,7 @@ public class EqualsParser extends AssertionParser {
             } else {
                 result = isMethodCall;
             }
-        } else if (!arg1.isSolved() && !arg2.isSolved()) {
+        } else if (!arg1.isSolved() || !arg2.isSolved()) {
             result = cantSolveType;
         }
 
