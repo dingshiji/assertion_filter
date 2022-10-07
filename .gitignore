@@ -40,3 +40,7 @@ build/
 
 ### input files ###
 **/resources
+
+
+### outputs ###
+/outputs
