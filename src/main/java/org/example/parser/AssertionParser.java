@@ -43,6 +43,9 @@ public abstract class AssertionParser {
     protected String truthStr;
     protected String testName;
 
+    protected String test_prefix_no;
+    protected String candidate_no;
+
     protected String fmName;
 
     protected HashMap<String, String> solvedToken, solvedMethod;
@@ -66,6 +69,9 @@ public abstract class AssertionParser {
         this.fmStr = fmStr.trim();
         this.truthStr = truthStr.trim();
         this.testName = testName.trim();
+        String[] split = testName.split("_");
+        this.test_prefix_no = split[0];
+        this.candidate_no = split[1];
     }
 
     private void setSolver() {
@@ -164,6 +170,8 @@ public abstract class AssertionParser {
 
 
     private void add_test_info() throws IOException {
+        parseResult.setMsg("test idx", test_prefix_no);
+        parseResult.setMsg("candidate idx", candidate_no);
         parseResult.setMsg("assertion", assertionStr);
         parseResult.setMsg("test", testStr);
         parseResult.setMsg("focal method", fmStr);
@@ -209,7 +217,7 @@ public abstract class AssertionParser {
     // template method here
     public ParseResult parse() throws IOException {
         init();
-        parseResult.setMsg("file",testName);
+//        parseResult.setMsg("file",testName);
         add_test_info();
 
         try {
