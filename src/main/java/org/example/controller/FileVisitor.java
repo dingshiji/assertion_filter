@@ -201,7 +201,6 @@ public class FileVisitor {
 //        readFromFile(args);
         readFromStr(args);
 
-        String str = "";
     }
 
     private String readAssertTypeFromFirstLine(File f) throws IOException {
