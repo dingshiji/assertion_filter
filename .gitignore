@@ -45,3 +45,7 @@ build/
 ### outputs ###
 /output
 /output_old
+
+
+### other ignored folders ###
+**/ignore
