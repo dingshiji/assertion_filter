@@ -64,8 +64,8 @@ public class EqualsParser extends AssertionParser {
                     argResult2.setArgName(mce.getArgument(1).asMethodCallExpr().getName().toString());
                 }
                 argResult2.setFieldAccess(mce.getArgument(1).isFieldAccessExpr());
-
                 ArgResult[] argResults = {argResult1, argResult2};
+
                 equalResult.setArg(argResults);
             }
         });

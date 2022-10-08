@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1df6b02-6be4-46da-94d5-5933ae81c755" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pythonScripts/107_check_full_test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pythonScripts/ignore/107_check_full_test.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pythonScripts/checkResult_106.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pythonScripts/ignore/checkResult_106.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pythonScripts/fix_empty_result.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pythonScripts/ignore/fix_empty_result.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pythonScripts/gen_files.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pythonScripts/ignore/gen_files.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pythonScripts/hello.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +50,7 @@
       <recent name="F:\ideaProjects\filter_refactor\src\main\resources\example\fm" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\ideaProjects\filter_refactor\pythonScripts\ignore" />
       <recent name="F:\ideaProjects\filter_refactor\input" />
       <recent name="F:\ideaProjects\filter_refactor\output" />
       <recent name="F:\ideaProjects\filter_refactor\outputs" />
