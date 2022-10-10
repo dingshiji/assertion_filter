@@ -193,13 +193,42 @@ public class FileVisitor {
         String output = gson.toJson(results);
         System.out.println(output);
 
+    }
 
+    private static void visitTruth(String[] args) throws IOException{
+        String filePath = args[0];
+        File file = new File(filePath);
+        List<String> lines = readLines(file, StandardCharsets.UTF_8);
+
+        HashMap results = new LinkedHashMap();
+        System.setOut(new PrintStream(args[2]));
+
+        for(int i=0;i<lines.size();i++){
+            String line = lines.get(i);
+            Gson gson = new Gson();
+            HashMap hashMap = gson.fromJson(line, HashMap.class);
+            String output = hashMap.get("truth").toString();
+            String truth = hashMap.get("truth").toString();
+            String fm = add_fm_param(hashMap.get("fm").toString());
+            String test = hashMap.get("test_prefix").toString();
+            String replaced_test = replace_placeholder(test, output.toString());
+            String assertion = output.toString();
+            String testName = Integer.toString(i)+"_"+Integer.toString(100);
+            FileVisitor fileVisitor = new FileVisitor(assertion, replaced_test, fm, truth, testName);
+            String result = fileVisitor.visit_str();
+            results.put(testName, result);
+        }
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String output = gson.toJson(results);
+        System.out.println(output);
     }
 
 
     public static void main(String[] args) throws IOException {
 //        readFromFile(args);
-        readFromStr(args);
+//        readFromStr(args);
+        visitTruth(args);
 
     }
 

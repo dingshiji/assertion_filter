@@ -51,20 +51,37 @@ public class EqualsParser extends AssertionParser {
                 }
 
                 ArgResult argResult1 = new ArgResult(mce.getArgument(0).toString());
-                argResult1.setMethodCall(mce.getArgument(0).isMethodCallExpr());
-                if (argResult1.isMethodCall()) {
-                    argResult1.setArgName(mce.getArgument(0).asMethodCallExpr().getName().toString());
-                }
-                argResult1.setFieldAccess(mce.getArgument(0).isFieldAccessExpr());
-
-
                 ArgResult argResult2 = new ArgResult(mce.getArgument(1).toString());
-                argResult2.setMethodCall(mce.getArgument(1).isMethodCallExpr());
-                if (argResult2.isMethodCall()) {
-                    argResult2.setArgName(mce.getArgument(1).asMethodCallExpr().getName().toString());
-                }
-                argResult2.setFieldAccess(mce.getArgument(1).isFieldAccessExpr());
                 ArgResult[] argResults = {argResult1, argResult2};
+
+                for(int i=0;i<2;i++){
+                    ArgResult argResult = argResults[i];
+                    argResult.setMethodCall(mce.getArgument(i).isMethodCallExpr());
+                    if(argResult.isMethodCall()){
+                        argResult.setArgName(mce.getArgument(i).asMethodCallExpr().getName().toString());
+                    }
+                    argResult.setFieldAccess(mce.getArgument(i).isFieldAccessExpr());
+                    if(mce.getArgument(i).isStringLiteralExpr()){
+                        argResult.setType("String");
+                    }else if(mce.getArgument(i).isIntegerLiteralExpr()) {
+                        argResult.setType("int");
+                    }else if(mce.getArgument(i).isBooleanLiteralExpr()) {
+                        argResult.setType("boolean");
+                    }else if(mce.getArgument(i).isDoubleLiteralExpr()) {
+                        argResult.setType("double");
+                    }else if(mce.getArgument(i).isCharLiteralExpr()) {
+                        argResult.setType("char");
+                    }
+
+                    // argument looks like lst[i]
+                    if(mce.getArgument(i).isArrayAccessExpr()){
+                        // 在ArgResult新增一个bool表示它是个数组访问
+                        // 新增一个String记录它的名字 ArrayName
+                        // 在context中, 如果找到ArrayName的类型, 设置这个参数的类型
+                        // TODO: 处理下标访问的类型
+                    }
+                }
+
 
                 equalResult.setArg(argResults);
             }
