@@ -49,3 +49,4 @@ build/
 
 ### other ignored folders ###
 **/ignore
+/pythonScripts
