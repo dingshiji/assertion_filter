@@ -22,6 +22,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 
+import static org.example.util.ParseUtils.getLiteralType;
+
 public abstract class AssertionParser {
 
     protected static final String cantSolveType = "cannot solve all the type info";
@@ -96,7 +98,7 @@ public abstract class AssertionParser {
 
     protected abstract void getTypeFromFM() throws FileNotFoundException;
 
-    private Expression getInner(Expression exp) {
+    public static Expression getInner(Expression exp) {
 //        System.out.println(exp.toString());
         while (exp.isEnclosedExpr()) {
             exp = exp.asEnclosedExpr().getInner();
@@ -138,18 +140,8 @@ public abstract class AssertionParser {
         cu.findAll(ReturnStmt.class).forEach(rs -> {
             String retType = "";
             Expression retVal = StaticJavaParser.parseExpression(rs.getChildNodes().get(0).toString());
-            retVal = getInner(retVal);
-            if (retVal.isStringLiteralExpr()) {
-                retType = "String";
-            } else if (retVal.isDoubleLiteralExpr()) {
-                retType = "double";
-            } else if (retVal.isIntegerLiteralExpr()) {
-                retType = "int";
-            } else if (retVal.isBooleanLiteralExpr()) {
-                retType = "boolean";
-            } else if (retVal.isCharLiteralExpr()) {
-                retType = "char";
-            }
+
+            retType = getLiteralType(retVal);
 
             solvedMethod.put(fmName, retType);
         });

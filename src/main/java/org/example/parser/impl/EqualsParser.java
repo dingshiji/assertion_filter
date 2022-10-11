@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.example.util.ParseUtils.getLiteralType;
+
 public class EqualsParser extends AssertionParser {
 
     Equal equalResult;
@@ -61,17 +63,20 @@ public class EqualsParser extends AssertionParser {
                         argResult.setArgName(mce.getArgument(i).asMethodCallExpr().getName().toString());
                     }
                     argResult.setFieldAccess(mce.getArgument(i).isFieldAccessExpr());
-                    if(mce.getArgument(i).isStringLiteralExpr()){
-                        argResult.setType("String");
-                    }else if(mce.getArgument(i).isIntegerLiteralExpr()) {
-                        argResult.setType("int");
-                    }else if(mce.getArgument(i).isBooleanLiteralExpr()) {
-                        argResult.setType("boolean");
-                    }else if(mce.getArgument(i).isDoubleLiteralExpr()) {
-                        argResult.setType("double");
-                    }else if(mce.getArgument(i).isCharLiteralExpr()) {
-                        argResult.setType("char");
-                    }
+
+                    String argType = getLiteralType(mce.getArgument(i));
+//                    if(mce.getArgument(i).isStringLiteralExpr()){
+//                        argResult.setType("String");
+//                    }else if(mce.getArgument(i).isIntegerLiteralExpr()) {
+//                        argResult.setType("int");
+//                    }else if(mce.getArgument(i).isBooleanLiteralExpr()) {
+//                        argResult.setType("boolean");
+//                    }else if(mce.getArgument(i).isDoubleLiteralExpr()) {
+//                        argResult.setType("double");
+//                    }else if(mce.getArgument(i).isCharLiteralExpr()) {
+//                        argResult.setType("char");
+//                    }
+                    argResult.setType(argType);
 
                     // argument looks like lst[i]
                     if(mce.getArgument(i).isArrayAccessExpr()){

@@ -1,5 +1,7 @@
 package org.example.util;
 
+import com.github.javaparser.StaticJavaParser;
+import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.resolution.declarations.ResolvedReferenceTypeDeclaration;
 import com.github.javaparser.resolution.types.ResolvedReferenceType;
 import com.github.javaparser.symbolsolver.model.resolution.TypeSolver;
@@ -42,7 +44,7 @@ public class ParseUtils {
         return is_super(a1, b1) || is_super(b1, a1) || is_super(a2, b2) || is_super(b2, a2);
     }
 
-    public static String getLiteralType(String token){
+    public static String getLiteralType(Expression token){
         token = getInner(token);
         String retType = "";
         if (token.isStringLiteralExpr()) {
@@ -55,6 +57,19 @@ public class ParseUtils {
             retType = "boolean";
         } else if (token.isCharLiteralExpr()) {
             retType = "char";
+        }else if(token.isUnaryExpr()){
+            retType = getLiteralType(token.asUnaryExpr().getExpression());
         }
+        return retType;
+    }
+
+    private static void test(){
+        String str = "-1";
+        Expression exp = StaticJavaParser.parseExpression(str);
+        System.out.println(getLiteralType(exp));
+    }
+
+    public static void main(String[] args) {
+        test();
     }
 }
