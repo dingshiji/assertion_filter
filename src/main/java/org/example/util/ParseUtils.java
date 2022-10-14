@@ -10,6 +10,17 @@ import com.github.javaparser.symbolsolver.resolution.typesolvers.ReflectionTypeS
 import static org.example.parser.AssertionParser.getInner;
 
 public class ParseUtils {
+
+    // result[0] --> result
+    public static String getName2FindType(String argName) {
+        Expression exp = StaticJavaParser.parseExpression(argName);
+        if (exp.isArrayAccessExpr()) {
+            return exp.asArrayAccessExpr().getName().toString();
+        } else {
+            return argName;
+        }
+    }
+
     private static boolean is_super(String parent, String child){
         if(parent.equals(child)) return true;
         if(parent.equals("java.lang.Object")) return true;
@@ -61,6 +72,27 @@ public class ParseUtils {
             retType = getLiteralType(token.asUnaryExpr().getExpression());
         }
         return retType;
+    }
+
+    public static boolean isLiteral(Expression token){
+        token = getInner(token);
+        if(!token.isUnaryExpr()){
+            return token.isStringLiteralExpr() || token.isDoubleLiteralExpr() || token.isIntegerLiteralExpr() || token.isBooleanLiteralExpr() || token.isCharLiteralExpr();
+        }else{
+            token = token.asUnaryExpr().getExpression();
+            return isLiteral(token);
+        }
+    }
+
+    public static boolean isLiteral(String tk){
+        Expression token = StaticJavaParser.parseExpression(tk);
+        token = getInner(token);
+        if(!token.isUnaryExpr()){
+            return token.isStringLiteralExpr() || token.isDoubleLiteralExpr() || token.isIntegerLiteralExpr() || token.isBooleanLiteralExpr() || token.isCharLiteralExpr();
+        }else{
+            token = token.asUnaryExpr().getExpression();
+            return isLiteral(token);
+        }
     }
 
     private static void test(){

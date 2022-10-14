@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import static org.example.util.ParseUtils.getLiteralType;
+import static org.example.util.ParseUtils.getName2FindType;
 
 public abstract class AssertionParser {
 
@@ -121,11 +122,20 @@ public abstract class AssertionParser {
     }
 
     protected void findTypeInSolvedToken(ArgResult arg) {
+        String original_arg = arg.getArgName();
+        String argName = getName2FindType(original_arg);
         if (!arg.isMethodCall()) {
 //            System.out.println(arg.getArgName());
             for (String key : solvedToken.keySet()) {
-                if (key.equals(arg.getArgName())) {
-                    arg.setType(solvedToken.get(key));
+                if (key.equals(argName)) {
+//                    Expression exp = StaticJavaParser.parseExpression(solvedToken.get(key));
+                    // if solved token ends with []
+                    if (solvedToken.get(key).endsWith("[]")) {
+                        // remove the [] in the end
+                        arg.setType(solvedToken.get(key).substring(0, solvedToken.get(key).length() - 2));
+                    }else{
+                        arg.setType(solvedToken.get(key));
+                    }
                     parseResult.setMsg("find type in test", arg.getArgName());
                 }
             }
@@ -176,8 +186,8 @@ public abstract class AssertionParser {
 
     protected boolean oneArgCompareWithTruth() throws IOException {
         DefaultPrettyPrinter defaultPrettyPrinter = new DefaultPrettyPrinter();
-        String code1 = readFile2str.read(truth);
-        String code2 = readFile2str.read(assertion);
+        String code1 = truthStr;
+        String code2 = assertionStr;
         MethodCallExpr exp1 = StaticJavaParser.parseExpression(code1).asMethodCallExpr();
         MethodCallExpr exp2 = StaticJavaParser.parseExpression(code2).asMethodCallExpr();
 
@@ -217,7 +227,7 @@ public abstract class AssertionParser {
         try {
             checkAssertion();
         } catch (Exception e) {
-            parseResult.setStopMsg("assertion parse error");
+            parseResult.setStopMsg("error in checkAssertion()");
         }
 
         try {

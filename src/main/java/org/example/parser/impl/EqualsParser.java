@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.example.util.ParseUtils.getLiteralType;
+import static org.example.util.ParseUtils.*;
 
 public class EqualsParser extends AssertionParser {
 
@@ -99,6 +99,8 @@ public class EqualsParser extends AssertionParser {
     protected void trivialCheck() {
         if (equalResult.getArg1().getArgName().equals(equalResult.getArg2().getArgName())) {
             equalResult.setStopMsg("arg1 == arg2");
+        }else if(isLiteral(equalResult.getArg1().getArgName()) && isLiteral(equalResult.getArg2().getArgName())){
+            equalResult.setStopMsg("compare two literals");
         }
         equalResult.setMsg("trivial_check", "finished");
     }
@@ -182,8 +184,8 @@ public class EqualsParser extends AssertionParser {
         }
 
         String result = "";
-
-        if (arg1.getType().equals(arg2.getType()) && arg1.isSolved() && arg2.isSolved()) {
+//        if (arg1.getType().equals(arg2.getType()) && arg1.isSolved() && arg2.isSolved()) {
+        if(arg1.isSolved()&& arg2.isSolved() && isSameType(arg1.getType(), arg2.getType())){
             result = goodAssertion;
         } else if (!arg1.getType().equals(arg2.getType()) && arg1.isSolved() && arg2.isSolved()) {
             result = incompatible;
