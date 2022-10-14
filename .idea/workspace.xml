@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1df6b02-6be4-46da-94d5-5933ae81c755" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/TruthVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/testJavaParser/NewGetType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/testJavaParser/NewGetType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/util/ParseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/util/ParseUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +157,7 @@
     <configuration name="visit outputs and truth_test" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.example.controller.FileVisitor" />
       <module name="filter_refactor" />
-      <option name="PROGRAM_PARAMETERS" value="src/main/resources/str/Top-30-lower.txt  output/top-30_1014_debug.json output/top-30_1014_truth_debug.json" />
+      <option name="PROGRAM_PARAMETERS" value="src/main/resources/str/Top-30-lower.txt  output/top-30_1014_1.json output/top-30_1014_truth_1.json" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

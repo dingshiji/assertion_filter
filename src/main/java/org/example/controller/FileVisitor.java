@@ -227,7 +227,7 @@ public class FileVisitor {
 
     public static void main(String[] args) throws IOException {
 //        readFromFile(args);
-//        readFromStr(args);
+        readFromStr(args);
         visitTruth(args);
 
     }

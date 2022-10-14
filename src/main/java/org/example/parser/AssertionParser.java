@@ -149,8 +149,12 @@ public abstract class AssertionParser {
         this.fmName = fmName;
         cu.findAll(ReturnStmt.class).forEach(rs -> {
             String retType = "";
-            Expression retVal = StaticJavaParser.parseExpression(rs.getChildNodes().get(0).toString());
-
+            Expression retVal = null;
+            try {
+                retVal = StaticJavaParser.parseExpression(rs.getChildNodes().get(0).toString());
+            } catch (Exception e) {
+                ;
+            }
             retType = getLiteralType(retVal);
 
             solvedMethod.put(fmName, retType);
