@@ -204,6 +204,9 @@ public class FileVisitor {
         System.setOut(new PrintStream(args[2]));
 
         for(int i=0;i<lines.size();i++){
+//            if(i!=1601){
+//                continue;
+//            }
             String line = lines.get(i);
             Gson gson = new Gson();
             HashMap hashMap = gson.fromJson(line, HashMap.class);

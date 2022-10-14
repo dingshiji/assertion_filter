@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1df6b02-6be4-46da-94d5-5933ae81c755" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/parser/AssertionParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/testJavaParser/NewIsSameType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/testJavaParser/NewIsSameType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +159,7 @@
     <configuration name="visit outputs and truth_test" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.example.controller.FileVisitor" />
       <module name="filter_refactor" />
-      <option name="PROGRAM_PARAMETERS" value="src/main/resources/str/Top-30-lower.txt  output/top-30_1014_1.json output/top-30_1014_truth_1.json" />
+      <option name="PROGRAM_PARAMETERS" value="src/main/resources/str/Top-30-lower.txt  output/top-30_1014_2.json output/top-30_1014_truth_2.json" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -237,13 +239,7 @@
           <line>39</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <condition expression="i == 1601" language="JAVA" />
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/controller/FileVisitor.java</url>
-          <line>206</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/parser/impl/EqualsParser.java</url>
           <line>117</line>
           <option name="timeStamp" value="26" />

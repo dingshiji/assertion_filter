@@ -103,6 +103,7 @@ public class NewIsSameType {
     }
 
     private static boolean isSameType(String a, String b){
+        if(a.equals("null")||b.equals("null")) return true;
         a = remove_generic(a);
         b = remove_generic(b);
         String a1 = "java.lang."+a;

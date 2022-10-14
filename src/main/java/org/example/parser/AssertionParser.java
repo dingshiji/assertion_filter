@@ -155,6 +155,9 @@ public abstract class AssertionParser {
             } catch (Exception e) {
                 ;
             }
+            if(retVal == null){
+                return;
+            }
             retType = getLiteralType(retVal);
 
             solvedMethod.put(fmName, retType);
